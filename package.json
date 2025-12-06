@@ -1,0 +1,14 @@
+{
+    "name": "owl-eye-extension",
+    "version": "1.0.0",
+    "description": "Child Safety Extension",
+    "scripts": {
+        "build": "node build.js"
+    },
+    "dependencies": {
+        "firebase": "^10.0.0"
+    },
+    "devDependencies": {
+        "esbuild": "^0.19.0"
+    }
+}

@@ -1,0 +1,202 @@
+:root {
+    --primary: #4f46e5;
+    --bg: #111827;
+    --card-bg: #1f2937;
+    --text: #f9fafb;
+    --text-muted: #9ca3af;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --success: #10b981;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 20px 40px;
+    border-bottom: 1px solid #374151;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 300px;
+    border-right: 1px solid #374151;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.event-item {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.event-item:hover {
+    border-color: var(--primary);
+}
+
+.event-item.active {
+    border-color: var(--primary);
+    background: #312e81;
+}
+
+.event-time {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.event-risk {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+
+/* Main Content - The Reel */
+.main-stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: radial-gradient(circle at center, #1f2937 0%, #111827 100%);
+}
+
+.reel-container {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16/9;
+    background: black;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid #374151;
+}
+
+.reel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.reel-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 40px 20px 20px;
+    color: white;
+}
+
+.reel-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.reel-desc {
+    font-size: 16px;
+    color: #e5e7eb;
+    line-height: 1.5;
+}
+
+.controls {
+    margin-top: 24px;
+    display: flex;
+    gap: 16px;
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.1s;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button.secondary {
+    background: var(--card-bg);
+    border: 1px solid #4b5563;
+}
+
+.risk-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+.risk-high {
+    color: var(--danger);
+    border: 1px solid var(--danger);
+}
+
+.risk-medium {
+    color: var(--warning);
+    border: 1px solid var(--warning);
+}
+
+.risk-low {
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+/* Login Screen */
+#loginScreen {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 300;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Owl - Parent Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Login Screen -->
+  <div id="loginScreen">
+    <div style="text-align: center; margin-bottom: 24px;">
+      <h1 style="font-size: 48px; margin-bottom: 8px;">🦉 Project Owl</h1>
+      <p style="color: var(--text-muted); font-size: 18px;">Parent Command Center</p>
+    </div>
+    <button id="loginBtn"
+      style="background: white; color: #333; display: flex; align-items: center; gap: 12px; padding: 12px 24px;">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="24">
+      Sign in with Google
+    </button>
+  </div>
+
+  <header>
+    <h1>🦉 Project Owl <span style="font-weight: 400; color: #9ca3af; font-size: 18px;">Parent Dashboard</span></h1>
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <span id="userEmail" style="font-size: 12px; color: var(--text-muted);"></span>
+      <button id="requestReportBtn" style="background: var(--primary); font-size: 14px; padding: 8px 16px;">📄 Request
+        Daily Report</button>
+      <button id="logoutBtn" class="secondary" style="font-size: 12px; padding: 8px 12px;">Sign Out</button>
+    </div>
+  </header>
+
+  <div class="container" id="mainDashboard">
+    <div class="sidebar" id="eventList">
+      <!-- Events will be injected here -->
+      <div style="text-align: center; color: #6b7280; margin-top: 40px;">Loading history...</div>
+    </div>
+
+    <div class="main-stage">
+      <div class="reel-container" id="reelPlayer">
+        <img id="reelImage" class="reel-image" src="" style="display: none;">
+        <div class="risk-badge risk-high" id="reelRisk" style="display: none;">HIGH RISK</div>
+
+        <div class="reel-overlay" id="reelOverlay" style="display: none;">
+          <div class="reel-title" id="reelTitle">Analyzing...</div>
+          <div class="reel-desc" id="reelDesc">Select an event to view details.</div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState"
+          style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #6b7280;">
+          Select an event from the sidebar to review.
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="playReelBtn">▶ Play Daily Reel</button>
+        <button class="secondary" id="clearBtn">Clear History</button>
+        <button class="secondary" id="settingsBtn" style="margin-left: auto;">⚙️ Detection Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Daily Report View (Hidden by default) -->
+  <div class="container" id="reportView"
+    style="display: none; flex-direction: column; padding: 40px; overflow-y: auto;">
+    <div style="max-width: 800px; margin: 0 auto; width: 100%;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+        <h2 style="margin: 0; font-size: 28px;">📊 Daily Digital Wellness Report</h2>
+        <div>
+          <button id="downloadReportBtn" class="secondary" style="display: none; margin-right: 8px;">⬇️
+            Download</button>
+          <button class="secondary" id="closeReportBtn">Close Report</button>
+        </div>
+      </div>
+
+      <div style="background: var(--card-bg); border-radius: 12px; padding: 32px; border: 1px solid #374151;">
+        <div id="reportContent" style="line-height: 1.6; color: #e5e7eb; white-space: pre-wrap;">
+          <div style="text-align: center; color: #9ca3af; padding: 40px;">
+            Generating report with Dr. Owl... <br>
+            <span style="font-size: 12px;">(This may take a few seconds)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal"
+    style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; z-index: 100;">
+    <div
+      style="background: var(--card-bg); padding: 30px; border-radius: 12px; width: 500px; border: 1px solid #374151;">
+      <h2 style="margin-top: 0;">Customize Detection</h2>
+      <p style="color: var(--text-muted); margin-bottom: 20px;">Choose what Project Owl should flag as a threat for
+        your child.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+          <input type="checkbox" id="setting_influencers" checked>
+          <div>
+            <div style="font-weight: 600;">Influencer Marketing</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Detect YouTubers/Streamers selling
+              products.</div>
+          </div>
+        </label>
+
+        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+          <input type="checkbox" id="setting_urgency" checked>
+          <div>
+            <div style="font-weight: 600;">Fake Urgency & Countdowns</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Flag "Offer ends soon" timers and
+              pressure tactics.</div>
+          </div>
+        </label>
+
+        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+          <input type="checkbox" id="setting_ads" checked>
+          <div>
+            <div style="font-weight: 600;">Aggressive Advertising</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Flag when ads take up >30% of the
+              screen.</div>
+          </div>
+        </label>
+
+        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+          <input type="checkbox" id="setting_lootboxes" checked>
+          <div>
+            <div style="font-weight: 600;">Loot Boxes & Gambling</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Detect gacha mechanics and paid
+              randomization.</div>
+          </div>
+        </label>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <label style="font-weight: 600; display: block; margin-bottom: 8px;">Custom Safety Instructions</label>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">
+          Add specific things to look out for (e.g., "Check for violent video game content" or "Flag expensive
+          toy unboxing").
+        </p>
+        <textarea id="setting_custom_prompt" rows="3" placeholder="Enter your custom instructions here..."
+          style="width: 100%; background: #111827; border: 1px solid #374151; color: white; padding: 12px; border-radius: 8px; font-family: inherit; resize: vertical; box-sizing: border-box;"></textarea>
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid #374151; margin: 24px 0;">
+
+      <h3 style="font-size: 16px; margin-bottom: 12px;">Safe List (Trusted Domains)</h3>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Project Owl will skip analysis for
+        these sites.</p>
+
+      <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+        <input type="text" id="safeListInput" placeholder="example.com"
+          style="flex: 1; background: #111827; border: 1px solid #374151; color: white; padding: 8px 12px; border-radius: 6px;">
+        <button id="addSafeDomainBtn" style="padding: 8px 16px;">Add</button>
+      </div>
+
+      <div id="safeListContainer"
+        style="max-height: 100px; overflow-y: auto; display: flex; flex-wrap: wrap; gap: 8px;">
+        <!-- Safe domains injected here -->
+      </div>
+
+      <div style="margin-top: 24px; display: flex; justify-content: flex-end; gap: 12px;">
+        <button class="secondary" id="closeSettingsBtn">Cancel</button>
+        <button id="saveSettingsBtn">Save Preferences</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>

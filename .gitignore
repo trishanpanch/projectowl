@@ -1,0 +1,7 @@
+src/config.js
+.DS_Store
+node_modules/
+dist/
+functions/node_modules/
+.firebase/
+.env

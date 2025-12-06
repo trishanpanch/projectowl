@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Owl - Login</title>
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #111827;
+            color: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: #1f2937;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        p {
+            color: #9ca3af;
+            margin-bottom: 24px;
+        }
+
+        button {
+            background: white;
+            color: #333;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #f3f4f6;
+        }
+
+        .error {
+            color: #ef4444;
+            margin-top: 16px;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>🦉 Project Owl</h1>
+        <p>Sign in to link this browser to your Parent Dashboard.</p>
+
+        <button id="googleLoginBtn">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="24" height="24">
+            Sign in with Google
+        </button>
+
+        <div id="status" style="margin-top: 20px; color: #10b981; display: none;">
+            ✅ Successfully Linked! <br> You can close this tab.
+        </div>
+        <div id="error" class="error"></div>
+    </div>
+    <script type="module" src="dist/src/login.js"></script>
+</body>
+
+</html>

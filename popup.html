@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Owl Debugger</title>
+  <style>
+    body {
+      width: 300px;
+      font-family: 'Inter', sans-serif;
+      padding: 16px;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+
+    h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .status-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .label {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .value {
+      font-size: 14px;
+      font-weight: 500;
+      word-break: break-all;
+    }
+
+    .image-preview {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid #e5e7eb;
+      margin-top: 8px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #4338ca;
+    }
+
+    /* New styles for the status and login section */
+    .status-container {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .status-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .status-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .status-label {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .status-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1f2937;
+    }
+
+    .status-value.active {
+      color: #10b981;
+      /* Green for active */
+      font-weight: 600;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .btn-primary {
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-primary:hover {
+      background-color: #4338ca;
+    }
+
+    .btn-secondary {
+      background-color: #6b7280;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background-color: #4b5563;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Project Owl Status</h1>
+
+  <div class="status-card">
+    <div class="label">Latest Snapshot</div>
+    <div id="timestamp" class="value">No data</div>
+    <div class="label" style="margin-top: 8px;">URL</div>
+    <div id="url" class="value">-</div>
+    <img id="preview" class="image-preview" style="display: none;" />
+  </div>
+
+  <div class="status-container">
+    <div class="status-item">
+      <span class="status-label">Status</span>
+      <span class="status-value active">Active Monitoring</span>
+    </div>
+    <div class="status-item">
+      <span class="status-label">Linked Account</span>
+      <span class="status-value" id="accountStatus" style="font-size: 11px;">Not Linked</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button id="linkAccountBtn" class="btn-primary">🔗 Link Parent Account</button>
+    <button id="unlinkBtn" class="btn-secondary" style="background-color: #ef4444; display: none;">❌ Unlink
+      Account</button>
+    <button id="testConnBtn" class="btn-secondary" style="background-color: #3b82f6; margin-top: 4px;">📡 Test Cloud
+      Connection</button>
+    <button id="refreshBtn" class="btn-secondary">🔄 Refresh Analysis</button>
+  </div>
+
+  <div id="loginSection"
+    style="display: none; padding: 12px; background: #374151; border-radius: 8px; margin-top: 12px; text-align: center;">
+    <p style="margin: 0 0 12px 0; font-size: 12px; color: #d1d5db;">Link to your Parent Dashboard</p>
+
+    <a href="https://projectowl-22baa.web.app" target="_blank"
+      style="display: block; margin-bottom: 12px; color: #10b981; font-size: 12px; text-decoration: none;">
+      1. Open Dashboard & Copy User ID ↗
+    </a>
+
+    <input type="text" id="uidInput" placeholder="Paste User ID here..."
+      style="width: 100%; padding: 10px; margin-bottom: 8px; border-radius: 4px; border: none; background: #1f2937; color: white; text-align: center;">
+
+    <button id="manualLinkBtn"
+      style="width: 100%; background: #10b981; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; font-weight: 600;">
+      2. Link Account
+    </button>
+    <p id="loginError" style="color: #ef4444; font-size: 10px; margin-top: 8px; display: none;"></p>
+  </div>
+
+  <div id="analysis-section" class="status-card" style="display: none;">
+    <div class="label">Project Owl Analysis</div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      <span class="label">Ad-Pressure</span>
+      <span id="score" class="value" style="font-size: 16px; font-weight: 700;">-</span>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      <span class="label">Risk Level</span>
+      <span id="risk" class="value" style="padding: 2px 6px; border-radius: 4px; font-size: 12px;">-</span>
+    </div>
+
+    <div class="label">Parent Summary</div>
+    <div id="summary" class="value" style="font-size: 13px; line-height: 1.4; color: #374151;"></div>
+
+    <div class="label" style="margin-top: 8px;">Threats</div>
+    <ul id="threats" style="padding-left: 16px; margin: 4px 0; font-size: 12px; color: #ef4444;"></ul>
+  </div>
+
+  <button id="refreshBtn">Refresh View</button>
+
+  <script type="module" src="dist/popup.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Owl - Child Safety Extension</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Landing Page Specific Styles */
+        body {
+            overflow-y: auto;
+            /* Allow scrolling for landing page */
+            display: block;
+            /* Override flex layout from dashboard */
+        }
+
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: radial-gradient(circle at center, #1f2937 0%, #111827 100%);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 24px;
+            justify-content: center;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .section {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid #374151;
+        }
+
+        .step-list {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+            margin-top: 40px;
+        }
+
+        .step-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 40px;
+        }
+
+        .step-item::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .pricing-card {
+            background: linear-gradient(145deg, #1f2937, #111827);
+            border: 1px solid var(--primary);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 400px;
+            margin: 40px auto 0;
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 800;
+            margin: 20px 0;
+            color: white;
+        }
+
+        footer {
+            border-top: 1px solid #374151;
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 80px;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav-bar">
+        <div style="font-size: 24px; font-weight: 700;">🦉 Project Owl</div>
+        <div>
+            <a href="dashboard.html" style="text-decoration: none;">
+                <button class="secondary">Sign In</button>
+            </a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Your Child's Digital Guardian</h1>
+        <p>
+            Project Owl uses advanced AI to analyze your child's browsing in real-time, detecting hidden dangers like
+            predatory marketing, dark patterns, and unsafe content.
+        </p>
+        <div class="cta-group">
+            <button id="downloadBtn" onclick="document.getElementById('setup').scrollIntoView({behavior: 'smooth'})">
+                Download Extension
+            </button>
+            <a href="dashboard.html">
+                <button class="secondary">Go to Dashboard</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="section" id="features">
+        <h2 style="text-align: center; font-size: 36px; margin-bottom: 16px;">How It Works</h2>
+        <p style="text-align: center; color: var(--text-muted);">Privacy-first protection that lives in the browser.</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3 style="font-size: 24px; margin-bottom: 12px;">👁️ Visual Analysis</h3>
+                <p style="color: var(--text-muted); line-height: 1.5;">
+                    Project Owl "sees" what your child sees. It takes snapshots of active tabs and uses Gemini AI to
+                    understand the context of videos, games, and ads.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h3 style="font-size: 24px; margin-bottom: 12px;">🛡️ Smart Detection</h3>
+                <p style="color: var(--text-muted); line-height: 1.5;">
+                    Automatically flags high-risk content like influencer product pushing, fake urgency timers, and
+                    aggressive loot box mechanics.
+                </p>
+            </div>
+            <div class="feature-card">
+                <h3 style="font-size: 24px; margin-bottom: 12px;">📊 Parent Insights</h3>
+                <p style="color: var(--text-muted); line-height: 1.5;">
+                    Get a daily "Reel" of your child's digital day, highlighting only the moments that matter, so you
+                    can have informed conversations.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="setup">
+        <h2 style="text-align: center; font-size: 36px; margin-bottom: 40px;">Get Started in 3 Minutes</h2>
+
+        <div style="background: #1f2937; padding: 40px; border-radius: 20px;">
+            <ol class="step-list">
+                <li class="step-item">
+                    <h3 style="font-size: 20px; margin-bottom: 8px;">Download the Extension</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 16px;">
+                        Currently in Beta. Download the source code to install manually.
+                    </p>
+                    <button class="secondary"
+                        onclick="window.open('https://github.com/trishanpanch/project-owl', '_blank')">
+                        📂 Download from GitHub
+                    </button>
+                </li>
+                <li class="step-item">
+                    <h3 style="font-size: 20px; margin-bottom: 8px;">Load into Chrome</h3>
+                    <p style="color: var(--text-muted);">
+                        1. Open Chrome and go to <code>chrome://extensions</code><br>
+                        2. Enable "Developer mode" in the top right.<br>
+                        3. Click "Load unpacked" and select the folder you just downloaded.
+                    </p>
+                </li>
+                <li class="step-item">
+                    <h3 style="font-size: 20px; margin-bottom: 8px;">Connect to Dashboard</h3>
+                    <p style="color: var(--text-muted);">
+                        Click the Owl icon in your browser toolbar to link it to your parent account.
+                    </p>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="section" id="pricing">
+        <h2 style="text-align: center; font-size: 36px;">Simple Pricing</h2>
+
+        <div class="pricing-card">
+            <div style="color: var(--primary); font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Beta
+                Access</div>
+            <div class="price">$0<span
+                    style="font-size: 18px; color: var(--text-muted); font-weight: 400;">/month</span></div>
+            <p style="color: var(--text-muted); margin-bottom: 32px;">
+                Project Owl is currently free during our public beta. Future premium features will include advanced
+                reporting and multi-child support.
+            </p>
+            <ul style="text-align: left; list-style: none; padding: 0; margin-bottom: 32px; color: #e5e7eb;">
+                <li style="margin-bottom: 12px;">✅ Unlimited Visual Analysis</li>
+                <li style="margin-bottom: 12px;">✅ Daily Safety Reports</li>
+                <li style="margin-bottom: 12px;">✅ Custom Risk Triggers</li>
+                <li style="margin-bottom: 12px;">✅ 7-Day History Retention</li>
+            </ul>
+            <a href="dashboard.html">
+                <button style="width: 100%;">Start for Free</button>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Project Owl. Built for the Google Gemini Developer Competition.</p>
+    </footer>
+
+    <script type="module" src="landing.js"></script>
+</body>
+
+</html>

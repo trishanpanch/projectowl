@@ -1,4 +1,5 @@
-const API_KEY = 'AIzaSyCM-G8Prk3epmTwDAT5SxNsFHDg9Q6COKU';
+require('dotenv').config();
+const API_KEY = process.env.GOOGLE_API_KEY;
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models?key=${API_KEY}`;
 
 async function listModels() {

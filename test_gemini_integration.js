@@ -1,8 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
+require('dotenv').config();
+
 // Configuration
-const API_KEY = 'AIzaSyCM-G8Prk3epmTwDAT5SxNsFHDg9Q6COKU';
+const API_KEY = process.env.GOOGLE_API_KEY;
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${API_KEY}`;
 const IMAGE_PATH = '/Users/trishanpanch/.gemini/antigravity/brain/1f2b169a-c61e-403e-9957-cafb01dc3848/spammy_roblox_site_1764823460213.png';
 

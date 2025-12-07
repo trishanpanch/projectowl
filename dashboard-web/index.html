@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Owl - Child Safety Extension</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
         /* Landing Page Specific Styles */
@@ -18,7 +21,7 @@
         .hero {
             padding: 80px 20px;
             text-align: center;
-            background: radial-gradient(circle at center, #1f2937 0%, #111827 100%);
+            background: radial-gradient(circle at center, rgba(31, 41, 55, 0.8) 0%, rgba(17, 24, 39, 0.8) 100%);
         }
 
         .hero h1 {
@@ -110,7 +113,6 @@
         }
 
         footer {
-            border-top: 1px solid #374151;
             padding: 40px 20px;
             text-align: center;
             color: var(--text-muted);
@@ -129,9 +131,16 @@
 </head>
 
 <body>
+    <canvas id="bgCanvas"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></canvas>
 
     <nav class="nav-bar">
-        <div style="font-size: 24px; font-weight: 700;">🦉 Project Owl</div>
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 24px; font-weight: 700;">
+            <div
+                style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: sans-serif;">
+                O</div>
+            Project Owl
+        </div>
         <div>
             <a href="dashboard.html" style="text-decoration: none;">
                 <button class="secondary">Sign In</button>
@@ -142,16 +151,14 @@
     <div class="hero">
         <h1>Your Child's Digital Guardian</h1>
         <p>
-            Project Owl uses advanced AI to analyze your child's browsing in real-time, detecting hidden dangers like
-            predatory marketing, dark patterns, and unsafe content.
+            Project Owl is made by parents for parents and uses real-time AI to spot digital hazards, equipping you with
+            the insights you need to have productive conversations with your child and build long-term digital
+            resilience.
         </p>
         <div class="cta-group">
             <button id="downloadBtn" onclick="document.getElementById('setup').scrollIntoView({behavior: 'smooth'})">
-                Download Extension
+                Get Started
             </button>
-            <a href="dashboard.html">
-                <button class="secondary">Go to Dashboard</button>
-            </a>
         </div>
     </div>
 
@@ -161,31 +168,72 @@
 
         <div class="features-grid">
             <div class="feature-card">
-                <h3 style="font-size: 24px; margin-bottom: 12px;">👁️ Visual Analysis</h3>
+                <div class="icon-container"
+                    style="font-size: 40px; margin-bottom: 16px; height: 60px; display: flex; align-items: center;">
+                    <!-- Animated Eye Icon -->
+                    <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" stroke="var(--primary)" stroke-width="2" />
+                        <circle cx="50" cy="50" r="20" fill="var(--primary)">
+                            <animate attributeName="r" values="20;25;20" dur="3s" repeatCount="indefinite" />
+                        </circle>
+                        <path d="M30 30 Q 50 10 70 30" stroke="var(--primary)" stroke-width="3" fill="none">
+                            <animate attributeName="d"
+                                values="M30 30 Q 50 10 70 30;M30 35 Q 50 25 70 35;M30 30 Q 50 10 70 30" dur="4s"
+                                repeatCount="indefinite" />
+                        </path>
+                    </svg>
+                </div>
+                <h3 style="font-size: 24px; margin-bottom: 12px;">Visual Analysis</h3>
                 <p style="color: var(--text-muted); line-height: 1.5;">
-                    Project Owl "sees" what your child sees. It takes snapshots of active tabs and uses Gemini AI to
-                    understand the context of videos, games, and ads.
+                    Project Owl "sees" what your child sees. It takes snapshots of active tabs and uses advanced AI to
+                    understand the full context of videos, games, and ads—catching what traditional filters miss.
                 </p>
             </div>
             <div class="feature-card">
-                <h3 style="font-size: 24px; margin-bottom: 12px;">🛡️ Smart Detection</h3>
+                <div class="icon-container"
+                    style="font-size: 40px; margin-bottom: 16px; height: 60px; display: flex; align-items: center;">
+                    <!-- Animated Shield Icon -->
+                    <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10 L80 25 V50 C80 70 50 90 50 90 C50 90 20 70 20 50 V25 L50 10 Z"
+                            stroke="var(--primary)" stroke-width="3" fill="rgba(79, 70, 229, 0.1)">
+                            <animate attributeName="stroke-opacity" values="1;0.5;1" dur="2s"
+                                repeatCount="indefinite" />
+                        </path>
+                        <path d="M50 35 V65 M35 50 H65" stroke="var(--primary)" stroke-width="3"
+                            stroke-linecap="round" />
+                    </svg>
+                </div>
+                <h3 style="font-size: 24px; margin-bottom: 12px;">Smart Detection</h3>
                 <p style="color: var(--text-muted); line-height: 1.5;">
-                    Automatically flags high-risk content like influencer product pushing, fake urgency timers, and
-                    aggressive loot box mechanics.
+                    Tell us what worries you, and we'll handle the rest. We automatically flag high-risk content like
+                    adult material, safety threats, and manipulative influencer marketing to keep your child protected.
                 </p>
             </div>
             <div class="feature-card">
-                <h3 style="font-size: 24px; margin-bottom: 12px;">📊 Parent Insights</h3>
+                <div class="icon-container"
+                    style="font-size: 40px; margin-bottom: 16px; height: 60px; display: flex; align-items: center;">
+                    <!-- Animated Graph/Reel Icon -->
+                    <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="20" width="60" height="60" rx="5" stroke="var(--primary)" stroke-width="3" />
+                        <path d="M30 70 L45 50 L60 60 L70 40" stroke="var(--primary)" stroke-width="3"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <animate attributeName="d"
+                                values="M30 70 L45 50 L60 60 L70 40;M30 70 L45 45 L60 55 L70 35;M30 70 L45 50 L60 60 L70 40"
+                                dur="3s" repeatCount="indefinite" />
+                        </path>
+                    </svg>
+                </div>
+                <h3 style="font-size: 24px; margin-bottom: 12px;">Parent Insights</h3>
                 <p style="color: var(--text-muted); line-height: 1.5;">
-                    Get a daily "Reel" of your child's digital day, highlighting only the moments that matter, so you
-                    can have informed conversations.
+                    Receive a daily "Reel" of your child's digital day, highlighting the moments that matter. Plus, get
+                    clinical-grade advice to help you have effective, informed, and trust-building conversations.
                 </p>
             </div>
         </div>
     </div>
 
     <div class="section" id="setup">
-        <h2 style="text-align: center; font-size: 36px; margin-bottom: 40px;">Get Started in 3 Minutes</h2>
+        <h2 style="text-align: center; font-size: 36px; margin-bottom: 40px;">Get Started</h2>
 
         <div style="background: #1f2937; padding: 40px; border-radius: 20px;">
             <ol class="step-list">
@@ -208,9 +256,16 @@
                     </p>
                 </li>
                 <li class="step-item">
+                    <h3 style="font-size: 20px; margin-bottom: 8px;">Start work</h3>
+                    <p style="color: var(--text-muted);">
+                        Click the O icon in your browser toolbar to link it to your parent account.
+                    </p>
+                </li>
+                <li class="step-item">
                     <h3 style="font-size: 20px; margin-bottom: 8px;">Connect to Dashboard</h3>
                     <p style="color: var(--text-muted);">
-                        Click the Owl icon in your browser toolbar to link it to your parent account.
+                        Connect to your web dashboard to see what your child has seen and receive structured feedback on
+                        how to discuss with your child and build digital resilience
                     </p>
                 </li>
             </ol>
@@ -220,32 +275,113 @@
     <div class="section" id="pricing">
         <h2 style="text-align: center; font-size: 36px;">Simple Pricing</h2>
 
-        <div class="pricing-card">
-            <div style="color: var(--primary); font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Beta
-                Access</div>
-            <div class="price">$0<span
-                    style="font-size: 18px; color: var(--text-muted); font-weight: 400;">/month</span></div>
-            <p style="color: var(--text-muted); margin-bottom: 32px;">
-                Project Owl is currently free during our public beta. Future premium features will include advanced
-                reporting and multi-child support.
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px;">
+            <!-- Beta Plan -->
+            <div class="pricing-card" style="margin: 0; display: flex; flex-direction: column;">
+                <div style="color: var(--primary); font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">
+                    Beta Access</div>
+                <div class="price">$0<span
+                        style="font-size: 18px; color: var(--text-muted); font-weight: 400;">/month</span></div>
+                <p style="color: var(--text-muted); margin-bottom: 32px; flex: 1;">
+                    Get full access to all features while we are in public beta. Help us shape the future of digital
+                    safety.
+                </p>
+                <ul style="text-align: left; list-style: none; padding: 0; margin-bottom: 32px; color: #e5e7eb;">
+                    <li style="margin-bottom: 12px;">✅ Unlimited Visual Analysis</li>
+                    <li style="margin-bottom: 12px;">✅ Daily Safety Reports</li>
+                    <li style="margin-bottom: 12px;">✅ Custom Risk Triggers</li>
+                    <li style="margin-bottom: 12px;">✅ 7-Day History Retention</li>
+                </ul>
+                <a href="dashboard.html">
+                    <button style="width: 100%;">Start for Free</button>
+                </a>
+            </div>
+
+            <!-- Beginner Plan -->
+            <div class="pricing-card" style="margin: 0; display: flex; flex-direction: column; border-color: #374151;">
+                <div style="color: #9ca3af; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Beginner
+                </div>
+                <div class="price">$9<span
+                        style="font-size: 18px; color: var(--text-muted); font-weight: 400;">/month</span></div>
+                <p style="color: var(--text-muted); margin-bottom: 32px; flex: 1;">
+                    Essential protection for your child's digital journey.
+                </p>
+                <ul style="text-align: left; list-style: none; padding: 0; margin-bottom: 32px; color: #e5e7eb;">
+                    <li style="margin-bottom: 12px;">✅ Unlimited Visual Analysis</li>
+                    <li style="margin-bottom: 12px;">✅ Custom Safety Reports</li>
+                    <li style="margin-bottom: 12px;">✅ Custom Risk Triggers</li>
+                    <li style="margin-bottom: 12px;">✅ 1-Day History Retention</li>
+                </ul>
+                <button class="secondary" style="width: 100%; opacity: 0.5; cursor: not-allowed;">Coming Soon</button>
+            </div>
+
+            <!-- Advanced Plan -->
+            <div class="pricing-card"
+                style="margin: 0; display: flex; flex-direction: column; border-color: var(--success); position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: 12px; right: -30px; background: var(--success); color: #000; padding: 4px 40px; transform: rotate(45deg); font-size: 10px; font-weight: bold;">
+                    PRIVACY+</div>
+                <div style="color: var(--success); font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">
+                    Advanced</div>
+                <div class="price">$19<span
+                        style="font-size: 18px; color: var(--text-muted); font-weight: 400;">/month</span></div>
+                <p style="color: var(--text-muted); margin-bottom: 32px; flex: 1;">
+                    Ultimate privacy with local AI processing. Your data never leaves your machine.
+                </p>
+                <ul style="text-align: left; list-style: none; padding: 0; margin-bottom: 32px; color: #e5e7eb;">
+                    <li style="margin-bottom: 12px;">✅ <strong>Local AI Models</strong> (Privacy First)</li>
+                    <li style="margin-bottom: 12px;">✅ Zero Data Egress</li>
+                    <li style="margin-bottom: 12px;">✅ Unlimited Visual Analysis</li>
+                    <li style="margin-bottom: 12px;">✅ 30-Day History Retention</li>
+                </ul>
+                <button class="secondary" style="width: 100%; opacity: 0.5; cursor: not-allowed;">Coming Soon</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="privacy">
+        <h2 style="text-align: center; font-size: 36px; margin-bottom: 40px;">Privacy & Security First</h2>
+        <div
+            style="background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid #374151; text-align: center; max-width: 800px; margin: 0 auto;">
+            <div style="font-size: 48px; margin-bottom: 24px;">🔒</div>
+            <h3 style="font-size: 24px; margin-bottom: 16px;">Built by Parents, For Parents</h3>
+            <p style="color: var(--text-muted); font-size: 18px; line-height: 1.6; margin-bottom: 24px;">
+                We understand that your child's data is the most sensitive information there is. That's why we take
+                security and safety extremely seriously.
             </p>
-            <ul style="text-align: left; list-style: none; padding: 0; margin-bottom: 32px; color: #e5e7eb;">
-                <li style="margin-bottom: 12px;">✅ Unlimited Visual Analysis</li>
-                <li style="margin-bottom: 12px;">✅ Daily Safety Reports</li>
-                <li style="margin-bottom: 12px;">✅ Custom Risk Triggers</li>
-                <li style="margin-bottom: 12px;">✅ 7-Day History Retention</li>
-            </ul>
-            <a href="dashboard.html">
-                <button style="width: 100%;">Start for Free</button>
-            </a>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; text-align: left; margin-top: 32px;">
+                <div style="background: rgba(255,255,255,0.05); padding: 24px; border-radius: 12px;">
+                    <h4 style="margin-bottom: 8px; color: white;">Enterprise Grade Security</h4>
+                    <p style="color: var(--text-muted); font-size: 14px; margin: 0;">
+                        Your data is securely stored using industry-leading encryption standards. We use the same
+                        security infrastructure as top financial institutions.
+                    </p>
+                </div>
+                <div style="background: rgba(255,255,255,0.05); padding: 24px; border-radius: 12px;">
+                    <h4 style="margin-bottom: 8px; color: white;">Zero Data Selling</h4>
+                    <p style="color: var(--text-muted); font-size: 14px; margin: 0;">
+                        We are a safety company, not an ad company. Your data is <strong>never</strong> sold, rented, or
+                        shared with third parties. Period.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
     <footer>
-        <p>© 2024 Project Owl. Built for the Google Gemini Developer Competition.</p>
+        <p>© 2025. Built with love by lunr studio.</p>
     </footer>
 
+    <!-- Custom Cursor -->
+    <div id="customCursor" class="custom-cursor">
+        <div class="cursor-body">
+            <span class="cursor-text">O</span>
+        </div>
+    </div>
+
     <script type="module" src="landing.js"></script>
+    <script type="module" src="background-animation.js"></script>
 </body>
 
 </html>

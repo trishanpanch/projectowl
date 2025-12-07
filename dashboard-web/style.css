@@ -11,12 +11,14 @@
 
 body {
     margin: 0;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Outfit', sans-serif;
     background-color: var(--bg);
     color: var(--text);
     height: 100vh;
     display: flex;
     flex-direction: column;
+    font-weight: 300;
+    /* Lighter base weight */
 }
 
 header {
@@ -30,7 +32,8 @@ header {
 h1 {
     margin: 0;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 500;
+    /* Reduced from 700 */
     display: flex;
     align-items: center;
     gap: 12px;
@@ -199,4 +202,51 @@ button.secondary {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+/* Custom Cursor Styles */
+body,
+a,
+button,
+input,
+textarea,
+[role="button"] {
+    cursor: none !important;
+}
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.2s;
+    will-change: transform;
+}
+
+.cursor-body {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(79, 70, 229, 0.7);
+    /* var(--primary) with opacity */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, -50%);
+}
+
+.custom-cursor.active {
+    opacity: 1;
+}
+
+.custom-cursor.hovering .cursor-body {
+    transform: translate(-50%, -50%) scale(1.5);
 }

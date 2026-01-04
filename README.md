@@ -4,8 +4,14 @@
 Project Owl is a browser-based agent that uses computer vision to protect children from modern online threats. It captures visual snapshots of the browsing experience and analyzes them for "soft threats" like aggressive marketing, dark patterns, and inappropriate content.
 
 ## Features
-- **🧠 Smart Sampling Engine**: Captures screen activity every second but only analyzes significant changes (>5% visual difference) to save costs.
-- **🛡️ Secure Cloud Backend**: Uses Firebase Cloud Functions to proxy AI calls, keeping API keys secure and hidden from the client.
+- **🧠 Smart Sampling Engine**:
+  - **The Eye**: Captures screen activity every 2 seconds to check for visual changes (>5% difference).
+  - **The Brain**: Enforces a "Cooldown" (10s) on expensive AI analysis to keep costs low.
+- **🦉 Dr. Owl Onboarding Agent**:
+  - A friendly, "Mentoring over Monitoring" chatbot that welcomes new parents.
+  - Interviews the parent to identify specific fears (e.g. "Roblox", "Bullying").
+  - Automatically configures the AI to look for those specific threats.
+- **🛡️ Secure Cloud Backend**: Uses Firebase Cloud Functions to proxy AI calls, keeping API keys secure.
 - **👁️ AI Threat Detection**: Analyzes content for "soft threats" using Google Gemini 1.5 Flash:
   - **Ad-Pressure**: Detects aggressive marketing and clutter.
   - **Influencer Marketing**: Flags undisclosed sponsorships.
@@ -62,7 +68,7 @@ Go to [https://projectowl-22baa.web.app](https://projectowl-22baa.web.app) and s
 
 ## Architecture
 -   **Frontend (Extension)**: Chrome Extension (Manifest V3), Vanilla JS, OffscreenCanvas.
--   **Frontend (Dashboard)**: Vite + Vanilla JS Web App (Firebase Auth + Firestore).
+-   **Frontend (Dashboard)**: React + Vite Web App (Firebase Auth + Firestore).
 -   **Backend**: Firebase Cloud Functions (Node.js 20).
 -   **Database**: Firestore (for history and settings).
 -   **AI**: Google Gemini 1.5 Flash.

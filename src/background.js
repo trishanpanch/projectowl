@@ -109,6 +109,17 @@ async function captureAndAnalyze(tabId, options = { force: false }) {
     await chrome.storage.local.set({ 'latest_snapshot': snapshotRecord });
 
     // Trigger Cloud Analysis
+    // Check Throttle
+    const { lastAnalysisTimestamp = 0 } = await chrome.storage.local.get('lastAnalysisTimestamp');
+    const now = Date.now();
+    
+    if (now - lastAnalysisTimestamp < 10000) {
+      console.log('⏳ Skipped analysis due to throttling (Cooldown active)');
+      return;
+    }
+    
+    // Update Timestamp and Trigger Analysis
+    await chrome.storage.local.set({ 'lastAnalysisTimestamp': now });
     analyzeSnapshot(snapshotRecord);
 
   } catch (error) {

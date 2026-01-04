@@ -58,12 +58,20 @@ firebase functions:secrets:set GEMINI_API_KEY
 # Paste your Gemini API Key when prompted
 ```
 
-## 6. Deploy Backend
-Deploy the Cloud Functions and Security Rules:
-
-```bash
-firebase deploy
-```
+## 6. Deploy Backend & Dashboard
+1.  **Build the Dashboard**:
+    Since the dashboard is a React app, you must build it first:
+    ```bash
+    cd dashboard-web
+    npm install
+    npm run build
+    cd ..
+    ```
+2.  **Deploy**:
+    Deploy the Cloud Functions (`analyzeImage`, `drOwlChat`) and the Hosting site:
+    ```bash
+    firebase deploy
+    ```
 
 ## 7. Connect Extension
 1.  In Firebase Console, go to **Project Settings**.
